@@ -7,7 +7,7 @@ function FoodCard({ item }) {
     <div className="bg-white shadow-md hover:shadow-lg transition rounded-xl overflow-hidden transform hover:scale-105 duration-300 cursor-pointer">
       {/* Food Image */}
       <img 
-        src={item.image} 
+        src={item.imagePath} 
         alt={item.name} 
         className="h-40 w-full object-cover" 
       />

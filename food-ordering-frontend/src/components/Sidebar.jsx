@@ -7,7 +7,7 @@ function Sidebar() {
 
   const menuItems = [
     { label: "Manage Account", icon: <FiUser /> },
-    { label: "Orders", icon: <FiBox /> },
+    { label: "Orders", icon: <FiBox />, path:"/orders" },
     { label: "Favorites", icon: <FiHeart /> },
     { label: "Wallet", icon: <FiCreditCard /> },
     { label: "Help", icon: <FiHelpCircle /> },
