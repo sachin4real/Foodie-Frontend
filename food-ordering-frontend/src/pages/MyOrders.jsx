@@ -2,15 +2,16 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 
-function Orders({customerId}) {
+function Orders() {
     const [orders, setOrders] = useState([]);
     const [payments, setPayments] = useState([]);
-  
+   let customerId = "cus01"
+
     useEffect(() => {
       if (!customerId) return;
   
       // Fetch orders by customer
-      axios.get(`http://localhost:8081/api/orders/customer/${customerId}`)
+      axios.get(`http://localhost:8080/api/orders/customer/${customerId}`)
         .then((res) => {
           setOrders(res.data);
         })
@@ -19,7 +20,7 @@ function Orders({customerId}) {
         });
   
       // Fetch all payments
-      axios.get("http://localhost:8081/api/payments")
+      axios.get("http://localhost:8080/api/payments")
         .then((res) => {
           setPayments(res.data);
         })

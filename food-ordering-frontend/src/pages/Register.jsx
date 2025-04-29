@@ -8,7 +8,7 @@ export default function Register() {
 
   const handleRegister = async () => {
     try {
-      await axios.post("http://localhost:8080/api/auth/register/customer", form);
+      await axios.post("http://localhost:8084/api/auth/register/customer", form);
       alert("Registered Successfully! Please Login.");
       navigate("/login");
     } catch (err) {
