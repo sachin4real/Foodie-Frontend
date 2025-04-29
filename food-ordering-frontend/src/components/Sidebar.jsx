@@ -10,16 +10,23 @@ function Sidebar() {
   const { isSidebarOpen, toggleSidebar } = useSidebar();
   const navigate = useNavigate();
 
+  const handleSignOut = () => {
+    localStorage.removeItem("token"); // ✅ Clear token
+    toggleSidebar(); // ✅ Close sidebar
+    navigate("/login"); // ✅ Redirect to login page
+    window.location.reload(); // ✅ Full reload (optional but recommended for full logout reset)
+  };
+
   const menuItems = [
     { label: "Manage Account", icon: <FiUser />, route: "/profile" },
-    { label: "Orders", icon: <FiBox /> , route: "/oders"},
+    { label: "Orders", icon: <FiBox />, route: "/orders" }, // ✅ Correct spelling
     { label: "Favorites", icon: <FiHeart /> },
     { label: "Wallet", icon: <FiCreditCard /> },
     { label: "Help", icon: <FiHelpCircle /> },
     { label: "Get a Ride", icon: <FaCarSide /> },
     { label: "Promotions", icon: <FiGift /> },
     { label: "Invite Friends", icon: <FiGift /> },
-    { label: "Sign Out", icon: <FiLogOut /> },
+    { label: "Sign Out", icon: <FiLogOut />, action: handleSignOut }, // ✅ Proper sign out
   ];
 
   return (
@@ -52,7 +59,11 @@ function Sidebar() {
             className="flex items-center gap-3 text-gray-700 hover:text-orange-600 cursor-pointer"
             onClick={() => {
               toggleSidebar();
-              if (item.route) navigate(item.route);
+              if (item.action) {
+                item.action();
+              } else if (item.route) {
+                navigate(item.route);
+              }
             }}
           >
             <span className="text-xl">{item.icon}</span>

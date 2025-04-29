@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// App.jsx
+import { Routes, Route } from "react-router-dom"; // ✅ No BrowserRouter here!
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import CartSidebar from "./components/CartSidebar";
@@ -8,52 +9,50 @@ import Orders from "./pages/MyOrders";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import ProtectedRoute from "./components/ProtectedRoute"; // ✅ important
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
-    <Router>
-      <div className="flex">
-        <Sidebar />
-        <div className="flex-1 flex flex-col">
-          <Navbar />
-          <Routes>
+    <div className="flex">
+      <Sidebar />
+      <div className="flex-1 flex flex-col">
+        <Navbar />
+        <Routes>
 
-            {/* ===== Public Routes ===== */}
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+          {/* ===== Public Routes ===== */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
-         
-            <Route
-              path="/"
-              element={
-                <ProtectedRoute>
-                  <Home />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/orders"
-              element={
-                <ProtectedRoute>
-                  <Orders />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/profile"
-              element={
-                <ProtectedRoute>
-                  <Profile />
-                </ProtectedRoute>
-              }
-            />
-
-          </Routes>
-        </div>
-        <CartSidebar />
+          {/* ===== Protected Routes ===== */}
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/orders"
+            element={
+              <ProtectedRoute>
+                <Orders />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+          
+        </Routes>
       </div>
-    </Router>
+      <CartSidebar />
+    </div>
   );
 }
 

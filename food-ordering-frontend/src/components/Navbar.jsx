@@ -1,5 +1,6 @@
 import { useSidebar } from "../context/SidebarContext";
 import { useCart } from "../context/CartContext";
+import { Link } from "react-router-dom"; // ✅ Import Link
 
 function Navbar() {
   const { toggleSidebar } = useSidebar();
@@ -16,15 +17,14 @@ function Navbar() {
         ☰
       </button>
 
-    {/* Center Brand */}
-<div className="flex-1 flex justify-center mx-4">
-  <div className="flex items-center space-x-2">
-    <h1 className="text-3xl font-extrabold text-gray-800">
-      <span className="text-orange-500">Foodie</span>
-    </h1>
-  </div>
-</div>
-
+      {/* Center Brand */}
+      <div className="flex-1 flex justify-center mx-4">
+        <Link to="/" className="flex items-center space-x-2">
+          <h1 className="text-3xl font-extrabold text-gray-800 hover:text-orange-600 transition">
+            <span className="text-orange-500">Foodie</span>
+          </h1>
+        </Link>
+      </div>
 
       {/* Right Section: Search Bar and Cart */}
       <div className="flex items-center space-x-4">
@@ -52,7 +52,6 @@ function Navbar() {
           )}
         </div>
       </div>
-
     </div>
   );
 }
